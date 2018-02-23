@@ -76,18 +76,12 @@ cd Qt4Qt5
 cd -
 
 cd designer-Qt4Qt5
-  qmake-qt5 designer.pro
+  qmake-qt5 designer.pro INCLUDEPATH+=../Qt4Qt5 QMAKE_LIBDIR+=../Qt4Qt5
   make install INSTALL_ROOT=$PKG
 cd -
 
-cp -r Python Python3
 cd Python
-  python configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/
-  make install INSTALL_ROOT=$PKG
-cd -
-
-cd Python3
-  python3 configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/
+  python3 configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/ --sip=/usr/bin/python3-sip --sip-incdir=/usr/include/python3.6
   make install INSTALL_ROOT=$PKG
 cd -
 
