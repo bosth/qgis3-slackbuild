@@ -81,7 +81,7 @@ cd designer-Qt4Qt5
 cd -
 
 cd Python
-  python3 configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/
+  python3 configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/ --sip=/usr/bin/python3-sip
   make install INSTALL_ROOT=$PKG
 cd -
 
