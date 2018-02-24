@@ -76,7 +76,7 @@ cd Qt4Qt5
 cd -
 
 cd designer-Qt4Qt5
-  qmake-qt5 designer.pro
+  qmake-qt5 designer.pro INCLUDEPATH+=../Qt4Qt5 QMAKE_LIBDIR+=../Qt4Qt5
   make install INSTALL_ROOT=$PKG
 cd -
 
