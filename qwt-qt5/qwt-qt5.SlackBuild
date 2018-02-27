@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for qca-qt5
+# Slackware build script for qwt-qt5
 
 # Copyright 2018 Benjamin Trigona-Harany <slackbuilds@jaxartes.net>
 # All rights reserved.
@@ -22,11 +22,11 @@
 #  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-SRCNAM=qca
+SRCNAM=qwt
 PRGNAM=$SRCNAM-qt5
-VERSION=${VERSION:-2.1.3}
+VERSION=${VERSION:-6.1.3}
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}	
+TAG=${TAG:-_SBo}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -55,46 +55,45 @@ else
   LIBDIRSUFFIX=""
 fi
 
-set -e
+set -e 
 
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $SRCNAM-$VERSION
-tar xvf $CWD/$SRCNAM-$VERSION.tar.gz
+tar xvf $CWD/$SRCNAM-$VERSION.tar.bz2
 cd $SRCNAM-$VERSION
 chown -R root:root .
 find -L . \
- \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
-  -o -perm 511 \) -exec chmod 755 {} \; -o \
- \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
-  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
 
-mkdir -p build
+# inspiration from https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=qwt-qt4
+sed -e '/^\s*QWT_INSTALL_PREFIX/ s|=.*|= /usr|' \
+    -e '/^QWT_INSTALL_DOCS/ s|^|#|' \
+    -e '/^QWT_INSTALL_HEADERS/ s|include|&/qt5|' \
+    -e '/^QWT_INSTALL_PLUGINS/ s|plugins/designer|lib$${LIBDIRSUFFIX}/qt5/&|' \
+    -e '/^QWT_INSTALL_FEATURES/ s|features|lib$${LIBDIRSUFFIX}/qt5/mkspecs/&|' \
+    -e '/^QWT_INSTALL_LIBS/ s|lib|&$${LIBDIRSUFFIX}/qt5/|' \
+   -i qwtconfig.pri
+
+mkdir build
 cd build
-  cmake \
-    -DCMAKE_C_FLAGS:STRING="$SLKCFLAGS" \
-    -DCMAKE_CXX_FLAGS:STRING="$SLKCFLAGS" \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DLIB_SUFFIX=${LIBDIRSUFFIX} \
-    -DQT4_BUILD:BOOL=OFF \
-    -DQT5_BUILD:BOOL=ON \
-    -DMAN_INSTALL_DIR=/usr/man \
-    -DCMAKE_BUILD_TYPE=Release ..
-  make
-  make install DESTDIR=$PKG
-cd ..
+  qmake-qt5 LIBDIRSUFFIX=$LIBDIRSUFFIX ..
+  make \
+    CFLAGS+="$SLKCFLAGS" \
+    CXXFLAGS+="$SLKCFLAGS"
+  make install INSTALL_ROOT=$PKG
+cd -
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-mv $PKG/usr/share/man $PKG/usr/man
-find $PKG/usr/man -type f -exec gzip -9 {} \;
-for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
-
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
-  COPYING README \
+  CHANGES-6.1 COPYING INSTALL README \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
