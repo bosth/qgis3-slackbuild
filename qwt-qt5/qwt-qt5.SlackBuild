@@ -84,7 +84,7 @@ cd build
   qmake-qt5 LIBDIRSUFFIX=$LIBDIRSUFFIX ..
   make \
     CFLAGS+="$SLKCFLAGS" \
-    CXXFLAGS+="$SLKCFLAGS"
+    CXXFLAGS+="$SLKCFLAGS -std=c++11"
   make install INSTALL_ROOT=$PKG
 cd -
 
