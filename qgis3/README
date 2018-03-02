@@ -3,9 +3,6 @@ that lets you view and manipulate spatial data on your computer.  It
 supports many common spatial data formats (e.g. PostGIS, ShapeFile and
 geotiff).
 
-gdal should be built after python3 has been installed to ensure that the proper
-Python 3 bindings are available.
-
 Optional compile-time dependencies: 
  - postgresql and postgis: for PostGIS support
  - gpsbabel: for the GPS plugin
