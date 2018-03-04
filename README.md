@@ -24,6 +24,6 @@ python3-PyQt5 [downgrade the current SlackBuild to version 5.7.1]
 qtkeychain [rebuild to ensure that it is built for Qt5]
 qwt-qt5 [new]
 qca-qt5 [new]
-QScintilla2-qt5 [new]
+QScintilla-qt5 [new]
 qgis3 [new]
 ```
