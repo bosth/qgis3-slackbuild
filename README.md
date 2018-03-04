@@ -1,7 +1,8 @@
 Instructions to build QGIS 3.0.0 on Slackware 14.2. Not all plugins will work
 due to missing Python 3 SlackBuilds for some modules.
 
-Build instructions:
+Build packages in the following order:
+```
 freexl
 geos
 proj
@@ -25,3 +26,4 @@ qwt-qt5 [new]
 qca-qt5 [new]
 QScintilla2-qt5 [new]
 qgis3 [new]
+```
