@@ -11,6 +11,7 @@ postgresql
 python3
 python3-sip
 python3-six
+python3-PyYAML
 numpy3
 gdal [rebuild to ensure that it has Python 3 support]
 postgis
