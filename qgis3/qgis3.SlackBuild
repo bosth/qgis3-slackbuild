@@ -89,7 +89,7 @@ cd build
     -DQGIS_LIBEXEC_SUBDIR=lib${LIBDIRSUFFIX}/qgis \
     -DQGIS_PLUGIN_SUBDIR=lib${LIBDIRSUFFIX}/qgis \
     -DWITH_QWTPOLAR=TRUE \
-    -DQWT_INCLUDE_DIR=/usr/include/qt5 \
+    -DQWT_INCLUDE_DIR=/usr/include/qt5/qwt \
     -DENABLE_TESTS=FALSE \
     -DWITH_PY_COMPILE=TRUE \
     -DQSCINTILLA_INCLUDE_DIR=/usr/include/qt5 \
