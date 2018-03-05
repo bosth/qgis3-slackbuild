@@ -20,7 +20,6 @@ libspatialite
 libxkbcommon
 qt5
 qt5-webkit
-PyQt5 [only needed because QScintilla-qt5 is built with Python 2 and 3 support]
 python3-PyQt5 [downgrade the current SlackBuild to version 5.7.1]
 qtkeychain [rebuild to ensure that it is built for Qt5]
 qwt-qt5 [new]

@@ -81,10 +81,11 @@ cd designer-Qt4Qt5
 cd -
 
 cp -r Python Python3
-cd Python
-  python configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n $PKG/usr/include/qt5 -o $PKG/usr/lib${LIBDIRSUFFIX} --sip=/usr/bin/python-sip --sip-incdir=/usr/include/python2.7
-  make install INSTALL_ROOT=$PKG
-cd -
+# QScintilla 2.10.2 is not compatible with Slackware 14.2's version of sip
+#cd Python
+#  python configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n $PKG/usr/include/qt5 -o $PKG/usr/lib${LIBDIRSUFFIX} --sip=/usr/bin/sip --sip-incdir=/usr/include/python2.7
+#  make install INSTALL_ROOT=$PKG
+#cd -
 
 cd Python3
   python3 configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n $PKG/usr/include/qt5 -o $PKG/usr/lib${LIBDIRSUFFIX} --sip=/usr/bin/python3-sip --sip-incdir=/usr/include/python3.6
