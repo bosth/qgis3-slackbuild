@@ -93,7 +93,6 @@ cd build
     -DENABLE_TESTS=FALSE \
     -DWITH_PY_COMPILE=TRUE \
     -DQSCINTILLA_INCLUDE_DIR=/usr/include/qt5 \
-    -DQCA_INCLUDE_DIR=/usr/include/Qca-qt5/QtCrypto \
     $WITHGRASS
 
   if [ -z "$WITHNINJA" ]; then
