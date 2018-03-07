@@ -88,6 +88,8 @@ cp -r Python Python3
 #cd -
 
 cd Python3
+  sed -i "1423i\    pro.write('INCLUDEPATH += /usr/include/qt5/QtWidgets\\\n')" configure.py
+  sed -i "1423i\    pro.write('INCLUDEPATH += /usr/include/qt5/QtPrintSupport\\\n')" configure.py
   python3 configure.py --pyqt=PyQt5 -c --qmake /usr/bin/qmake-qt5 -n $PKG/usr/include/qt5 -o $PKG/usr/lib${LIBDIRSUFFIX} --sip=/usr/bin/python3-sip --sip-incdir=/usr/include/python3.6
   make install INSTALL_ROOT=$PKG
 cd -
