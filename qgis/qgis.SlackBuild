@@ -24,7 +24,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qgis
-VERSION=${VERSION:-3.0.2}
+VERSION=${VERSION:-3.2.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -76,7 +76,7 @@ else
   WITHGRASS=""
 fi
 
-sed -i 's|${SIP_BINARY_PATH}|/usr/bin/python3-sip|' cmake/SIPMacros.cmake
+sed -i 's|${SIP_BINARY_PATH}|/usr/bin/sip3|' cmake/SIPMacros.cmake
 
 mkdir -p build
 cd build
@@ -90,9 +90,8 @@ cd build
     -DQGIS_PLUGIN_SUBDIR=lib${LIBDIRSUFFIX}/qgis \
     -DWITH_QWTPOLAR=TRUE \
     -DQWT_INCLUDE_DIR=/usr/include/qt5/qwt \
-    -DENABLE_TESTS=FALSE \
-    -DWITH_PY_COMPILE=TRUE \
     -DQSCINTILLA_INCLUDE_DIR=/usr/include/qt5 \
+    -DENABLE_TESTS=FALSE \
     -DWITH_3D=TRUE \
     $WITHGRASS
 
