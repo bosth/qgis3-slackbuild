@@ -1,4 +1,4 @@
-Instructions to build QGIS 3.0.0 on Slackware current with AlienBob's ktown.
+Instructions to build QGIS 3.x on Slackware current with AlienBob's ktown.
 Not all plugins will work due to missing Python 3 SlackBuilds for some modules.
 
 Build packages in the following order:
@@ -19,5 +19,5 @@ libspatialindex
 libspatialite
 qtkeychain [rebuild to ensure that it is built for Qt5]
 qwt-qt5 [new]
-qgis3 [new; change python3-sip to sip3 in SlackBuild]
+qgis3 [new]
 ```

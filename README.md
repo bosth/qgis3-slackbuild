@@ -1,4 +1,4 @@
-Instructions to build QGIS 3.0.0 on Slackware 14.2. Not all plugins will work
+Instructions to build QGIS 3.x on Slackware current. Not all plugins will work
 due to missing Python 3 SlackBuilds for some modules.
 
 Build packages in the following order:
@@ -8,10 +8,6 @@ geos
 proj
 libinput
 postgresql
-python3
-python3-sip
-python3-six
-python3-PyYAML
 numpy3
 pytz [PYTHON3=yes]
 OWSLib
