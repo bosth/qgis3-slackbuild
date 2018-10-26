@@ -24,7 +24,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=qgis
-VERSION=${VERSION:-3.2.1}
+VERSION=${VERSION:-3.4.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -108,10 +108,10 @@ find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | gr
 find $PKG/usr/man -type f -exec gzip -9 {} \;
 for i in $( find $PKG/usr/man -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
 
-install -D -m 0644 debian/qgis.desktop \
+install -D -m 0644 build/org.qgis.qgis.desktop \
   $PKG/usr/share/applications/qgis.desktop
 sed -i "s|image/jpeg;||" $PKG/usr/share/applications/qgis.desktop
-install -D -m 0644 debian/qgis.xml \
+install -D -m 0644 build/org.qgis.qgis.appdata.xml \
   $PKG/usr/share/mime/packages/qgis.xml
 install -D -m 0644 images/icons/qgis_icon.svg \
   $PKG/usr/share/icons/hicolor/scalable/apps/qgis.svg
